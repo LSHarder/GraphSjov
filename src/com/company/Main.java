@@ -17,5 +17,8 @@ public class Main {
         myGraph1.addEdge(4,5,3);
         myGraph1.addEdge(4,6,4);
         myGraph1.addEdge(5,6,1);
+
+        myGraph1.printMatrixGraph();
+        myGraph1.primsMST();
     }
 }

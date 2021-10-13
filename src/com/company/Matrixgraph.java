@@ -19,7 +19,7 @@ public class Matrixgraph {
         for(int from=0;from< matrixEdge.length;from++){
             for(int to=0;to< matrixEdge.length; to++){
                 if(matrixEdge[from][to]==1){
-                    System.out.println("edge from" + from +"to" + to+ "weight" +matrixWeight[from][to]);
+                    System.out.println("edge from " + from + " to " + to+ " weight " +matrixWeight[from][to]);
 
                 }
             }
@@ -44,6 +44,22 @@ public class Matrixgraph {
         VertexPairs[0].distance=0;
         Q.decreasekey(pos);
         int MST =0;
+        while(!Q.isEmpty()){
+            Pair u= Q.extractMin();
+            for (int v=0; v<numberOfVertices;){
+                if(matrixEdge[u.index][v]==1 && matrixWeight[u.index][v]<D[v]){
+                    D[v]=matrixWeight[u.index][v];
+                    P[v]=u.index;
+                    //only to get my VertixPairs updated, pos is logvtime
+                    pos= Q.getPosition(VertexPairs[v]);
+                    VertexPairs[v].distance= D[v];
+                    Q.decreasekey(pos);
+                }
+            }
+            MST+=D[u.index];
+            System.out.println(" Edge: " + P[u.index]+"," + u.index + " Weight " + D[u.index]);
+        }
+        System.out.println(" MST size:"+MST);
 
 
     }
